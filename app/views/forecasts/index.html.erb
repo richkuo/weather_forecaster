@@ -1,2 +1,23 @@
-<h1>Forecasts#index</h1>
-<p>Find me in app/views/forecasts/index.html.erb</p>
+<% if @forecast_data %>
+  <h1>Weather Forecast for <%= @zip_code %></h1>
+
+  <p>Current Temperature: <%= @forecast_data['temp'] %>°C</p>
+
+  <% if @from_cache %>
+    <p>Forecast data retrieved from cache.</p>
+  <% end %>
+<% else %>
+  <h1>Weather Forecast</h1>
+
+  <% if @zip_code %>
+    <p><%= @zip_code %> is invalid</p>
+  <% end %>
+<% end %>
+
+<%= form_tag(forecasts_path, method: "get") do %>
+  <%= label_tag(:zip_code, "Enter Zip Code:") %>
+
+  <%= text_field_tag(:zip_code) %>
+
+  <%= submit_tag("Get Forecast") %>
+<% end %>
