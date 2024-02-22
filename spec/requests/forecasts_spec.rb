@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Forecasts", type: :request do
-  describe "GET /index" do
+  describe "GET /" do
     it "returns http success" do
-      get "/forecasts/index"
+      get "/"
       expect(response).to have_http_status(:success)
     end
   end
-
 end
