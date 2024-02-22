@@ -1,24 +1,37 @@
-# README
+### Weather Forecast Assessment
+___
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version 3.2.3
 
-Things you may want to cover:
+* Rails version 7.1.3.2
 
-* Ruby version
+* Production cache is configured to `:mem_cache_store`
 
-* System dependencies
+* Weather API is from Open Weather, please obtain a free api key from https://openweathermap.org/api
 
-* Configuration
+* Using dotenv, https://github.com/bkeepers/dotenv
 
-* Database creation
+* Tests are built with RSpec, https://github.com/rspec/rspec-rails
 
-* Database initialization
+___
 
-* How to run the test suite
+* To get started, clone the project and run
+```
+bundle install
+rake db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+* Create a `.env` file and set
+```
+OPENWEATHER_API_KEY=YOUR_OPENWEATHER_API_KEY
+```
 
-* Deployment instructions
+* Start the local server with
+```
+rails s
+```
 
-* ...
+* Run tests locally with
+```
+rspec
+```
