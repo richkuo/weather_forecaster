@@ -1,23 +1,35 @@
-<% if @forecast_data %>
-  <h1>Weather Forecast for <%= @zip_code %></h1>
+<h1>Weather Forecast</h1>
 
-  <p>Current Temperature: <%= @forecast_data['temp'] %>°C</p>
+<div class="row">
+  <div class="col-sm-6">
+    <%= form_tag(forecasts_path, method: "get") do %>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <p><%= label_tag :zip_code, "Enter Zip Code", class: '' %></p>
+        </div>
 
-  <% if @from_cache %>
-    <p>Forecast data retrieved from cache.</p>
-  <% end %>
-<% else %>
-  <h1>Weather Forecast</h1>
+        <div class="col-sm-6">
+          <p><%= text_field_tag :zip_code, '', class: 'form-control', required: true %></p>
+        </div>
 
-  <% if @zip_code %>
-    <p><%= @zip_code %> is invalid</p>
-  <% end %>
-<% end %>
+        <div class="col-sm-12">
+          <p><%= submit_tag "Get Forecast", class: 'btn btn-primary' %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<%= form_tag(forecasts_path, method: "get") do %>
-  <%= label_tag(:zip_code, "Enter Zip Code:") %>
+  <div class="col-sm-6">
+    <% if @forecast_data %>
+      <h5>Current Temperature for <%= @zip_code %> is <%= @forecast_data['temp'] %>°C</h5>
 
-  <%= text_field_tag(:zip_code) %>
-
-  <%= submit_tag("Get Forecast") %>
-<% end %>
+      <% if @from_cache %>
+        <p>Forecast data retrieved from cache.</p>
+      <% end %>
+    <% else %>
+      <% if @zip_code %>
+        <p class="text-danger"><%= @zip_code %> is invalid</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
